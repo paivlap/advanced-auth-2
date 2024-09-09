@@ -5,7 +5,7 @@ const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
 
 const session=require('express session')
-const passport=require('')
+const passport=require('passport')
 const app = express();
 
 app.set('view engine', 'pug');
@@ -16,7 +16,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   cookie: { secure: false }
-}));
+}), passport.initialize(), passport.session());
 
 app.get('/', (request, response ) => {
   response.render('index', { title: 'Hello', message: 'Please log in' })
