@@ -5,6 +5,8 @@ const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
 
 const app = express();
+app.set('view engine', 'pug');
+app.set('views')
 
 fccTesting(app); //For FCC testing purposes
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -20,6 +22,6 @@ app.listen(PORT, () => {
   console.log('Listening on port ' + PORT);
 });
 
-app.get('/', (request, response )) =>  {
+app.get('/', (request, response ) => {
   response.send('Hello world')
-}
+})
