@@ -20,4 +20,6 @@ app.listen(PORT, () => {
   console.log('Listening on port ' + PORT);
 });
 
-app.get(/, (request, ))
+app.get('/', (request, response )) =>  {
+  response.send('Hello world')
+}
