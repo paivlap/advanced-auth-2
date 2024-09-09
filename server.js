@@ -8,7 +8,7 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views', './views/pug')
 
-let session=require('express_session')
+let session=require('express-session')
 let passport=require('passport')
 
 app.use(session({
