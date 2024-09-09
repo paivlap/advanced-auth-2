@@ -11,7 +11,7 @@ app.set('views', './views/pug')
 
 
 app.get('/', (request, response ) => {
-  response.render('index')
+  response.render('index', { title: 'Hello', message: 'Please log in' })
 })
 
 fccTesting(app); //For FCC testing purposes
