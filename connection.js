@@ -3,7 +3,7 @@ require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
 async function main(callback) {
-  const URI = process.env.MongoURI;
+  const URI = process.env.Mongo_URI;
   // Declare MONGO_URI in your .env file
   const client = new MongoClient(URI, {
     useNewUrlParser: true,
