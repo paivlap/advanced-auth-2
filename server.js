@@ -24,6 +24,11 @@ app.get('/', (request, response ) => {
   response.render('index', { title: 'Hello', message: 'Please log in' })
 })
 
+//save user id to a cookie
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
 fccTesting(app); //For FCC testing purposes
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use(express.json());
