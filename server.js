@@ -3,8 +3,10 @@ require("dotenv").config();
 const express = require("express");
 const myDB = require("./connection");
 const fccTesting = require("./freeCodeCamp/fcctesting.js");
-const app = express();
+const session = require('express-sess')
 const ObjectID = require("mongodb");
+
+const app = express();
 const mongo = require("mongodb").MongoClient;
 
 app.set("view engine", "pug");
@@ -30,9 +32,14 @@ app.get("/", (request, response) => {
 
 let URI =
   "mongodb+srv://testuser41:<Kurtturuusu66>@cluster0.hgejp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-mongo.connect(URI, (err, db)) => {
-  if(err)
-}
+mongo.connect((URI, error, db) => {
+  if(error){
+    console.log(error)
+  }else{
+    console.log(db)
+  }
+  });
+
 myDB(async (client) => {
   const myDataBase = await client.db("database").collection("users");
 
