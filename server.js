@@ -4,7 +4,8 @@ const express = require('express');
 const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
 const app = express();
-const ObjectID=require('mongodb')
+const ObjectID= require('mongodb')
+const mongo= require('mongodb').MongoC
 app.set('view engine', 'pug');
 app.set('views', './views/pug')
 
@@ -36,6 +37,8 @@ passport.deserializeUser((id, done) => {
     done(null, null);
   });
 });
+
+let URI='mongodb+srv://testuser41:<db_password>@cluster0.hgejp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 
 fccTesting(app); //For FCC testing purposes
 app.use('/public', express.static(process.cwd() + '/public'));
