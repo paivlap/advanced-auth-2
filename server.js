@@ -30,6 +30,9 @@ app.get("/", (request, response) => {
 
 let URI =
   "mongodb+srv://testuser41:<Kurtturuusu66>@cluster0.hgejp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+mongo.connect(URI, (err, db)) => {
+  if(err)
+}
 myDB(async (client) => {
   const myDataBase = await client.db("database").collection("users");
 
@@ -50,6 +53,7 @@ myDB(async (client) => {
   //retrieve user details from cookie
   passport.deserializeUser((id, done) => {
     myDB.findOne({ _id: new ObjectID(id) }, (err, doc) => {
+      done(null, doc);
     });
   });
 }).catch((e) => {
