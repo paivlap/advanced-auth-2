@@ -3,9 +3,9 @@ require("dotenv").config();
 const express = require("express");
 const myDB = require("./connection");
 const fccTesting = require("./freeCodeCamp/fcctesting.js");
-const session = require('express-session');
+const session = require("express-session");
 const passport = require("passport");
-const {ObjectID} = require("mongodb");
+const { ObjectID } = require("mongodb");
 
 const app = express();
 
@@ -51,8 +51,6 @@ myDB(async (client) => {
       done(null, doc);
     });
   });
-
-
 }).catch((e) => {
   app.route("/").get((req, res) => {
     res.render("index", { title: e, message: "Unable to connect to database" });
@@ -62,12 +60,4 @@ myDB(async (client) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log("Listening on port " + PORT);
-});  
-  
-  
-app.get("/", (request, response) => {
-  response.render("index", { title: "Hello", message: "Please log in" });
 });
-
-
-
