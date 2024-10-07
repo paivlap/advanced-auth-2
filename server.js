@@ -4,13 +4,12 @@ const express = require('express');
 const myDB = require('./connection');
 const fccTesting = require('./freeCodeCamp/fcctesting.js');
 const app = express();
-
+const ObjectID=require('mongodb')
 app.set('view engine', 'pug');
 app.set('views', './views/pug')
 
 let session=require('express-session')
 let passport=require('passport')
-let ObjectId=require('mongodb')
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -25,7 +24,6 @@ app.get('/', (request, response ) => {
   response.render('index', { title: 'Hello', message: 'Please log in' })
 })
 
-const { ObjectID } = require('mongodb');
 
 //save user id to a cookie
 passport.serializeUser((user, done) => {
@@ -34,7 +32,7 @@ passport.serializeUser((user, done) => {
 
 //retrieve user details from cookie
 passport.deserializeUser((id, done) => {
-  db.findOne({_id: new ObjectID(id) }, (err, doc) => {
+  myDB.findOne({_id: new ObjectID(id) }, (err, doc) => {
     done(null, null);
   });
 });
