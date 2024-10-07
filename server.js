@@ -10,6 +10,7 @@ app.set('views', './views/pug')
 
 let session=require('express-session')
 let passport=require('passport')
+let ObjectId=require('mongodb')
 
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -24,9 +25,18 @@ app.get('/', (request, response ) => {
   response.render('index', { title: 'Hello', message: 'Please log in' })
 })
 
+const { ObjectID } = require('mongodb');
+
 //save user id to a cookie
 passport.serializeUser((user, done) => {
   done(null, user._id);
+});
+
+//retrieve user details from cookie
+passport.deserializeUser((id, done) => {
+  db.findOne({_id: new ObjectID(id) }, (err, doc) => {
+    done(null, null);
+  });
 });
 
 fccTesting(app); //For FCC testing purposes
