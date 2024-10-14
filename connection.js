@@ -1,6 +1,5 @@
 // Do not change this file
 require("dotenv").config();
-const url = "mongodb://localhost:27017";
 const { MongoClient } = require("mongodb");
 
 async function main(callback) {
